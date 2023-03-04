@@ -58,7 +58,7 @@ export function App() {
 
   return (
     <div className={styles.appContainer}>
-      <Section title="mynpm iPhonebook" level="1">
+      <Section title="myPhonebook" level="1">
         <ContactForm onSubmit={addNewContact} />
       </Section>
       <Section title="Contacts" level="2">
