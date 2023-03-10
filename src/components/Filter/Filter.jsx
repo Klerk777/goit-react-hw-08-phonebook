@@ -1,7 +1,16 @@
-import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeFilter, getFilter } from 'redux/contactsSlice';
+
 import styles from './Filter.module.scss';
 
-const Filter = ({ value, onChangeFilter }) => {
+const Filter = () => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
+
+  const onChangeFilter = e => {
+    dispatch(changeFilter(e.target.value));
+  };
+
   return (
     <label className={styles.filter}>
       Filter
@@ -9,16 +18,11 @@ const Filter = ({ value, onChangeFilter }) => {
         type="text"
         name="filter"
         placeholder="add a filter to sort contacts"
-        value={value}
+        value={filter}
         onChange={onChangeFilter}
       />
     </label>
   );
-};
-
-Filter.propTypes = {
-  value: PropTypes.string,
-  onChangeFilter: PropTypes.func.isRequired,
 };
 
 export default Filter;
