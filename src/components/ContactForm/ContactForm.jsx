@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../redux/operations';
-import { selectContacts } from '../../redux/selectors';
+import Button from 'shared/Button/Button';
+import { addContact } from '../../redux/contacts/operations';
+import { selectContacts } from '../../redux/contacts/selectors';
 import styles from './ContactForm.module.scss';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const onInputChange = e => {
     const { name, value } = e.target;
@@ -14,8 +15,8 @@ export default function ContactForm() {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         break;
@@ -34,14 +35,14 @@ export default function ContactForm() {
       alert(`${name} is already in contacts`);
       return;
     }
-    if (contacts.some(contact => contact.phone === phone)) {
+    if (contacts.some(contact => contact.number === number)) {
       alert('This phone number already exists');
       return;
     }
 
     const newContact = {
       name,
-      phone,
+      number,
     };
 
     dispatch(addContact(newContact));
@@ -50,7 +51,7 @@ export default function ContactForm() {
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -73,8 +74,8 @@ export default function ContactForm() {
         Phone number
         <input
           type="tel"
-          name="phone"
-          value={phone}
+          name="number"
+          value={number}
           placeholder="enter phone number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
@@ -83,7 +84,7 @@ export default function ContactForm() {
         />
       </label>
 
-      <button type="submit">Add contact</button>
+      <Button text="Add contact" />
     </form>
   );
 }

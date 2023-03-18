@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts, addContact, deleteContact } from './operations';
+import {
+  fetchContacts,
+  addContact,
+  deleteContact,
+} from '../contacts/operations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -52,9 +56,3 @@ export const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-
-// // Selectors
-// export const getContacts = state => state.items;
-// // export const getFilter = state => state;
-// console.log('getContacts() :>> ', getContacts());
-// // console.log('getFilter() :>> ', getFilter());

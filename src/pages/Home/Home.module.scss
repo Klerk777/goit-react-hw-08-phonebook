@@ -1,0 +1,8 @@
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  & img {
+    margin: 100px 0 150px;
+  }
+}

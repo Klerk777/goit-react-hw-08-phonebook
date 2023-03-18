@@ -1,0 +1,10 @@
+.section {
+  padding: 20px 40px;
+  &:not(:last-child) {
+    padding-bottom: 0;
+  }
+  & h2,
+  h1 {
+    margin-bottom: 20px;
+  }
+}
